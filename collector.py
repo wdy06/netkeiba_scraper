@@ -3,6 +3,7 @@
 import logging
 import time
 from multiprocessing import Process
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
@@ -28,6 +29,7 @@ class URLCollector:
         self.chrome_options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
         self.chrome_driver_path = './python/chromedriver'
+        self.output_dir = './netkeiba_scraper_python/spider/data/'
 
 
 class RaceURLCollector(URLCollector):
@@ -83,7 +85,7 @@ class RaceURLCollector(URLCollector):
 
         finally:
             self.logger.info('writing result in txt file')
-            with open('race_url_list.txt', 'w') as f:
+            with open(os.path.join(self.output_dir, 'race_url_list.txt', 'w')) as f:
                 for race_url in race_url_list:
                     f.write(race_url + '\n')
             self.logger.info('finished writing')
@@ -141,7 +143,7 @@ class HorseURLCollector(URLCollector):
 
         finally:
             self.logger.info('writing result in txt file')
-            with open('horse_url_list.txt', 'w') as f:
+            with open(os.path.join(self.output_dir, 'horse_url_list.txt', 'w')) as f:
                 for horse_url in horse_url_list:
                     f.write(horse_url + '\n')
             self.logger.info('finished writing')
@@ -204,7 +206,7 @@ class JockeyURLCollector(URLCollector):
 
         finally:
             self.logger.info('writing result in txt file')
-            with open('jockey_url_list.txt', 'w') as f:
+            with open(os.path.join(self.output_dir, 'jockey_url_list.txt', 'w')) as f:
                 for jockey_url in jockey_url_list:
                     f.write(jockey_url + '\n')
             self.logger.info('finished writing')
