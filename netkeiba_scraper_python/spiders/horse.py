@@ -2,11 +2,10 @@ import scrapy
 
 from ..items import Horse
 from .. import util
-import os
+
 
 class HorseSpider(scrapy.Spider):
     name = 'horse'
-    print(os.getcwd())
     start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/horse_url_list.txt')
 
     def parse(self, response):
