@@ -13,6 +13,7 @@ class JockeySpider(scrapy.Spider):
         jockey_text = response.css('div.db_head_name.fc > h1::text').extract_first()
         jockey_name = self.process_jockey_name(jockey_text)
 
+        item['id'] = util.jockey_profile_url2id(response.url)
         item['name'] = jockey_name
         item['url'] = response.url
         yield item
