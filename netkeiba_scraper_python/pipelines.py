@@ -32,6 +32,7 @@ class DatabasePipeline(object):
 
     def process_item_jockey(self, item):
         jockey = model.Jockey()
+        jockey.id = item['id']
         jockey.name = item['name']
         jockey.url = item['url']
         self.session.add(jockey)
@@ -39,6 +40,7 @@ class DatabasePipeline(object):
 
     def process_item_horse(self, item):
         horse = model.Horse()
+        horse.id = item['id']
         horse.name = item['name']
         horse.birthdate = item['birthdate']
         horse.winnings_prize = item['winnings_prize']

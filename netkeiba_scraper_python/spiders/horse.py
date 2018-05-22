@@ -21,6 +21,7 @@ class HorseSpider(scrapy.Spider):
         winnings_prize_text = response.css('div.db_prof_area_02  td')[row_idx].css('::text').extract_first()
         winnings_prize = self.process_winning_prize(winnings_prize_text)
 
+        item['id'] = util.horse_profile_url2id(response.url)
         item['name'] = horse_name
         item['birthdate'] = birthdate
         item['trainer'] = trainer
@@ -29,7 +30,7 @@ class HorseSpider(scrapy.Spider):
         yield item
 
     def process_horse_name(self, text):
-        return text[:text.find(' ')]
+        return text[:-2]
 
     def process_winning_prize(self, text):
         text = text.replace('\n', '')

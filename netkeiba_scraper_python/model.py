@@ -16,7 +16,7 @@ def create_table(engine):
 class Race(Base):
     __tablename__ = 'race'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True)
     date = Column(DATETIME)
     race_number = Column(Integer)
     race_name = Column(String)
@@ -39,7 +39,7 @@ class Race(Base):
 class Horse(Base):
     __tablename__ = 'horse'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     birthdate = Column(String)
     winnings_prize = Column(Integer)
@@ -50,7 +50,7 @@ class Horse(Base):
 class Jockey(Base):
     __tablename__ = 'jockey'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(String, primary_key=True)
     name = Column(String)
     url = Column(String)
 

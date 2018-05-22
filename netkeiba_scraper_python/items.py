@@ -16,12 +16,14 @@ class NetkeibaScraperPythonItem(scrapy.Item):
 
 class Jockey(scrapy.Item):
 
+    id = scrapy.Field()
     name = scrapy.Field()
     url = scrapy.Field()
 
 
 class Horse(scrapy.Item):
 
+    id = scrapy.Field()
     name = scrapy.Field()
     birthdate = scrapy.Field()
     winnings_prize = scrapy.Field()
