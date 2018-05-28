@@ -20,6 +20,8 @@ class DatabasePipeline(object):
             self.process_item_jockey(item)
         elif spider.name == 'horse':
             self.process_item_horse(item)
+        elif spider.name == 'race':
+            self.process_item_race(item)
         return item
 
     def open_spider(self, spider):
@@ -47,4 +49,26 @@ class DatabasePipeline(object):
         horse.trainer = item['trainer']
         horse.url = item['url']
         self.session.add(horse)
+        self.session.commit()
+
+    def process_item_race(self, item):
+        race = model.Race()
+        race.id = item['id']
+        race.name = item['name']
+        race.date = item['date']
+        race.race_number = item['race_number']
+        race.plain_obstacle = item['plain_obstacle']
+        race.course_field = item['course_field']
+        race.leftright = item['leftright']
+        race.distance = item['distance']
+        race.age_condition = item['age_condition']
+        race.race_grade = item['race_grade']
+        race.racetrack = item['racetrack']
+        race.entry_restrict = item['entry_restrict']
+        race.weight_condition = item['weight_condition']
+        race.entry_count = item['entry_count']
+        race.weather = item['weather']
+        race.track_condition = item['track_condition']
+        race.netkeiba_url = item['netkeiba_url']
+        self.session.add(race)
         self.session.commit()
