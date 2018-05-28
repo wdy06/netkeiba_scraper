@@ -50,7 +50,7 @@ class Race(scrapy.Item):
 
 
 class RaceHorse(scrapy.Item):
-    id = scrapy.Field()
+    race_id = scrapy.Field()
     goal_rank = scrapy.Field()
     frame_number = scrapy.Field()
     horse_number = scrapy.Field()
@@ -58,9 +58,12 @@ class RaceHorse(scrapy.Item):
     jockey_id = scrapy.Field()
     time = scrapy.Field()
     agari = scrapy.Field()
-    poplular_rank = scrapy.Field()
+    tansyo_odds = scrapy.Field()
+    popular_rank = scrapy.Field()
     horse_weight = scrapy.Field()
-    age = scrapy.Field()
+    sex_age = scrapy.Field()
+    burden_weight = scrapy.Field()
+    netkeiba_url = scrapy.Field()
 
 
 class RaceResult(scrapy.Item):

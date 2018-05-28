@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, CHAR, DATE, DATETIME, ForeignKey, create_engine
+from sqlalchemy import Column, Integer, String, REAL, ForeignKey, create_engine
 from scrapy.utils.project import get_project_settings
 
 Base = declarative_base()
@@ -64,11 +64,14 @@ class RaceHorse(Base):
     horse_number = Column(Integer)
     horse_id = Column(Integer, ForeignKey(Horse.id), primary_key=True)
     jockey_id = Column(Integer, ForeignKey(Jockey.id))
-    time = Column(String)
-    agari = Column(Integer)
+    time = Column(REAL)
+    agari = Column(REAL)
+    tansyo_odds = Column(REAL)
     popular_rank = Column(Integer)
     horse_weight = Column(Integer)
-    age = Column(Integer)
+    sex_age = Column(Integer)
+    burden_weight = Column(Integer)
+    netkeiba_url = Column(String)
 
 
 class RaceResult(Base):
