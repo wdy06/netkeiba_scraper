@@ -6,13 +6,17 @@ from ..items import Race
 from .. import util
 
 
+def race_url2id(url):
+    return int(re.search('\d+', url).group(0))
+
+
 class RaceSpider(scrapy.Spider):
     name = 'race'
     start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/race_url_list.txt')
 
     def parse(self, response):
         item = Race()
-        item['id'] = self.race_url2id(response.url)
+        item['id'] = race_url2id(response.url)
         item['netkeiba_url'] = response.url
         name = response.css('diary_snap > div > div > dl > dd > h1::text').extract_first()
         item['name'] = name
@@ -34,9 +38,6 @@ class RaceSpider(scrapy.Spider):
         item['weight_condition'] = None
         item['entry_count'] = None
         yield item
-
-    def race_url2id(self, url):
-        return int(re.search('\d+', url).group(0))
 
     def process_date_text(self, text):
         return re.search('[0-9]{4}年([1-9]|1[012])月([1-9]|[12][0-9]|3[01])日', text).group(0)
