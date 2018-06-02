@@ -24,6 +24,8 @@ class DatabasePipeline(object):
             self.process_item_race(item)
         elif spider.name == 'racehorse':
             self.process_item_racehorse(item)
+        elif spider.name == 'raceresult':
+            self.process_item_raceresult(item)
         return item
 
     def open_spider(self, spider):
@@ -94,3 +96,36 @@ class DatabasePipeline(object):
 
         self.session.add(racehorse)
         self.session.commit()
+
+    def process_item_raceresult(self, item):
+        raceresult = model.RaceResult()
+        raceresult.race_id = item['race_id']
+        raceresult.netkeiba_url = item['netkeiba_url']
+        raceresult.odds_tansyo = item['odds_tansyo']
+        raceresult.odds_hukusyo_1 = item['odds_hukusyo_1']
+        raceresult.odds_hukusyo_2 = item['odds_hukusyo_2']
+        raceresult.odds_hukusyo_3 = item['odds_hukusyo_3']
+        raceresult.odds_wakuren = item['odds_wakuren']
+        raceresult.odds_umaren = item['odds_umaren']
+        raceresult.odds_wide_1 = item['odds_wide_1']
+        raceresult.odds_wide_2 = item['odds_wide_2']
+        raceresult.odds_wide_3 = item['odds_wide_3']
+        raceresult.odds_umatan = item['odds_umatan']
+        raceresult.odds_sanrenpuku = item['odds_sanrenpuku']
+        raceresult.odds_sanrentan = item['odds_sanrentan']
+        raceresult.combi_tansyo = item['combi_tansyo']
+        raceresult.combi_hukusyo_1 = item['combi_hukusyo_1']
+        raceresult.combi_hukusyo_2 = item['combi_hukusyo_2']
+        raceresult.combi_hukusyo_3 = item['combi_hukusyo_3']
+        raceresult.combi_wakuren = item['combi_wakuren']
+        raceresult.combi_umaren = item['combi_umaren']
+        raceresult.combi_wide_1 = item['combi_wide_1']
+        raceresult.combi_wide_2 = item['combi_wide_2']
+        raceresult.combi_wide_3 = item['combi_wide_3']
+        raceresult.combi_umatan = item['combi_umatan']
+        raceresult.combi_sanrenpuku = item['combi_sanrenpuku']
+        raceresult.combi_sanrentan = item['combi_sanrentan']
+
+        self.session.add(raceresult)
+        self.session.commit()
+
