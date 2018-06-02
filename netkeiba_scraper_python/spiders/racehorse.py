@@ -41,7 +41,7 @@ class RaceHorseSpider(scrapy.Spider):
         horse_weight_text = cells[14].css('::text').extract_first()
         item['horse_weight'] = self.process_horse_weight(horse_weight_text)
 
-        return item
+        yield item
 
     def process_horse_id_text(self, text):
         text = text.replace('horse', '')
