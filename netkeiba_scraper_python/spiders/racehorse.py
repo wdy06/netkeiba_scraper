@@ -17,9 +17,9 @@ class RaceHorseSpider(scrapy.Spider):
             if i == 0:
                 continue
             item = self.table_line_parser(line)
-            item['race_id'] = race.race_url2id(response.url)
-            item['netkeiba_url'] = response.url
-            yield item
+        item['race_id'] = race.race_url2id(response.url)
+        item['netkeiba_url'] = response.url
+        yield item
 
     def table_line_parser(self, line_selector):
         item = RaceHorse()
@@ -41,7 +41,7 @@ class RaceHorseSpider(scrapy.Spider):
         horse_weight_text = cells[14].css('::text').extract_first()
         item['horse_weight'] = self.process_horse_weight(horse_weight_text)
 
-        yield item
+        return item
 
     def process_horse_id_text(self, text):
         text = text.replace('horse', '')
