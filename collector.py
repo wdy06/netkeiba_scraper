@@ -27,6 +27,8 @@ class URLCollector:
         self.chrome_options = Options()
         self.chrome_options.add_argument("--headless")
         self.chrome_options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+        # for linux
+        # self.chrome_options.binary_location = '/usr/bin/google-chrome-stable'
 
         self.chrome_driver_path = './python/chromedriver'
         self.output_dir = './netkeiba_scraper_python/spider/data/'
