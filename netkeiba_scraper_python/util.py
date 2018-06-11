@@ -18,4 +18,9 @@ def jockey_profile_url2id(text):
 def horse_profile_url2id(text):
     # http://db.netkeiba.com/horse/XXXXXXXXXX/
     text = re.sub('(http://db.netkeiba.com/horse/)', '', text)
-    return int(text.replace('/', ''))
+    return text.replace('/', '')
+
+
+def race_url2id(text):
+    text = re.sub('(http://db.netkeiba.com/race/)', '', text)
+    return text.replace('/', '')

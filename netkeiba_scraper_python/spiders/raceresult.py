@@ -4,7 +4,6 @@ import scrapy
 
 from ..items import RaceResult
 from .. import util
-from . import race
 
 
 class RaceResultSpider(scrapy.Spider):
@@ -14,7 +13,7 @@ class RaceResultSpider(scrapy.Spider):
     def parse(self, response):
         item = RaceResult()
         item = self.init_item(item)
-        item['race_id'] = race.race_url2id(response.url)
+        item['race_id'] = util.race_url2id(response.url)
         item['netkeiba_url'] = response.url
 
         table_lines = response.css('div.result_info.box_left > diary_snap table').css('tr')
