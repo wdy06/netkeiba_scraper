@@ -16,7 +16,7 @@ def create_table(engine):
 class Race(Base):
     __tablename__ = 'race'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(String, primary_key=True)
     name = Column(String)
     date = Column(String)
     race_number = Column(Integer)
@@ -39,7 +39,7 @@ class Race(Base):
 class Horse(Base):
     __tablename__ = 'horse'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(String, primary_key=True)
     name = Column(String)
     birthdate = Column(String)
     winnings_prize = Column(Integer)
@@ -58,12 +58,12 @@ class Jockey(Base):
 class RaceHorse(Base):
     __tablename__ = 'race_horse'
 
-    race_id = Column(Integer, ForeignKey(Race.id), primary_key=True)
+    race_id = Column(String, ForeignKey(Race.id), primary_key=True)
     goal_rank = Column(Integer)
     frame_number = Column(Integer)
     horse_number = Column(Integer)
-    horse_id = Column(Integer, ForeignKey(Horse.id), primary_key=True)
-    jockey_id = Column(Integer, ForeignKey(Jockey.id))
+    horse_id = Column(String, ForeignKey(Horse.id), primary_key=True)
+    jockey_id = Column(String, ForeignKey(Jockey.id))
     time = Column(REAL)
     agari = Column(REAL)
     tansyo_odds = Column(REAL)
@@ -77,7 +77,7 @@ class RaceHorse(Base):
 class RaceResult(Base):
     __tablename__ = 'race_result'
 
-    race_id = Column(Integer, ForeignKey(Race.id), primary_key=True)
+    race_id = Column(String, ForeignKey(Race.id), primary_key=True)
     odds_tansyo = Column(Integer)
     odds_hukusyo_1 = Column(Integer)
     odds_hukusyo_2 = Column(Integer)

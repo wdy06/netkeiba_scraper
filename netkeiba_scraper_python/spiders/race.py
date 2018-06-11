@@ -16,7 +16,7 @@ class RaceSpider(scrapy.Spider):
 
     def parse(self, response):
         item = Race()
-        item['id'] = race_url2id(response.url)
+        item['id'] = util.race_url2id(response.url)
         item['netkeiba_url'] = response.url
         name = response.css('diary_snap > div > div > dl > dd > h1::text').extract_first()
         item['name'] = name

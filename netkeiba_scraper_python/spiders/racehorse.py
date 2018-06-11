@@ -4,7 +4,6 @@ import scrapy
 
 from ..items import RaceHorse
 from .. import util
-from . import race
 
 
 class RaceHorseSpider(scrapy.Spider):
@@ -17,7 +16,7 @@ class RaceHorseSpider(scrapy.Spider):
             if i == 0:
                 continue
             item = self.table_line_parser(line)
-        item['race_id'] = race.race_url2id(response.url)
+        item['race_id'] = util.race_url2id(response.url)
         item['netkeiba_url'] = response.url
         yield item
 
