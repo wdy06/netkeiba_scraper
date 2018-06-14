@@ -70,7 +70,7 @@ class RaceHorse(Base):
     popular_rank = Column(Integer)
     horse_weight = Column(Integer)
     sex_age = Column(Integer)
-    burden_weight = Column(Integer)
+    burden_weight = Column(REAL)
     netkeiba_url = Column(String)
 
 

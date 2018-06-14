@@ -23,13 +23,14 @@ class RaceHorseSpider(scrapy.Spider):
     def table_line_parser(self, line_selector):
         item = RaceHorse()
         cells = line_selector.css('td')
-        item['goal_rank'] = int(cells[0].css('::text').extract_first())
+        goal_rank_text = cells[0].css('::text').extract_first()
+        item['goal_rank'] = self.process_goal_rank_text(goal_rank_text)
         item['frame_number'] = int(cells[1].css('span::text').extract_first())
         item['horse_number'] = int(cells[2].css('::text').extract_first())
         horse_id_text = cells[3].css('a::attr(href)').extract_first()
         item['horse_id'] = self.process_horse_id_text(horse_id_text)
         item['sex_age'] = cells[4].css('::text').extract_first()
-        item['burden_weight'] = int(cells[5].css('::text').extract_first())
+        item['burden_weight'] = float(cells[5].css('::text').extract_first())
         jockey_id_text = cells[6].css('a::attr(href)').extract_first()
         item['jockey_id'] = self.process_jockey_id_text(jockey_id_text)
         time_text = cells[7].css('::text').extract_first()
@@ -41,6 +42,12 @@ class RaceHorseSpider(scrapy.Spider):
         item['horse_weight'] = self.process_horse_weight(horse_weight_text)
 
         return item
+
+    def process_goal_rank_text(self, text):
+        if text.isdigit():
+            return int(text)
+        else:
+            return None
 
     def process_horse_id_text(self, text):
         text = text.replace('horse', '')
