@@ -62,7 +62,7 @@ class RaceSpider(scrapy.Spider):
     def process_leftright(self, text):
         result = re.search('左|右', text)
         if result is None:
-            raise None
+            return None
         else:
             return result.group(0)
 
