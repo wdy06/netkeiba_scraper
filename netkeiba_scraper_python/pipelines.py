@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -14,6 +16,7 @@ from . import model
 class DatabasePipeline(object):
     def __init__(self):
         self.engine = model.db_connect()
+        self.logger = logging.getLogger(__name__)
 
     def process_item(self, item, spider):
         if spider.name == 'jockey':
@@ -74,8 +77,11 @@ class DatabasePipeline(object):
         race.weather = item['weather']
         race.track_condition = item['track_condition']
         race.netkeiba_url = item['netkeiba_url']
-        self.session.add(race)
-        self.session.commit()
+        try:
+            self.session.add(race)
+            self.session.commit()
+        except Exception as e:
+            self.logger.error(e)
 
     def process_item_racehorse(self, item):
         racehorse = model.RaceHorse()
