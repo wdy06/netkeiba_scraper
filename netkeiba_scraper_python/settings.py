@@ -75,6 +75,7 @@ ITEM_PIPELINES = {
 
 # logging configure
 #LOG_LEVEL = 'INFO'
+#LOG_FILE = './log/log.txt'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

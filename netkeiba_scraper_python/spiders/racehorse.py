@@ -58,6 +58,8 @@ class RaceHorseSpider(scrapy.Spider):
         return text.replace('/', '')
 
     def process_time_text(self, text):
+        if text is None:
+            return None
         minites = float(text[:text.find(':')])
         seconds = float(text[text.find(':') + 1:])
         return minites * 60 + seconds
