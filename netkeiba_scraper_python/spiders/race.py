@@ -69,7 +69,7 @@ class RaceSpider(scrapy.Spider):
     def process_weather(self, text):
         result = re.search('(天候 : ).', text)
         if result is None:
-            raise ParseError
+            return None
         else:
             return result.group(0).replace('天候 : ', '')
 

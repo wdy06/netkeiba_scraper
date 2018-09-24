@@ -44,8 +44,11 @@ class DatabasePipeline(object):
         jockey.id = item['id']
         jockey.name = item['name']
         jockey.url = item['url']
-        self.session.add(jockey)
-        self.session.commit()
+        try:
+            self.session.add(jockey)
+            self.session.commit()
+        except Exception:
+            self.session.rollback()
 
     def process_item_horse(self, item):
         horse = model.Horse()
@@ -55,8 +58,11 @@ class DatabasePipeline(object):
         horse.winnings_prize = item['winnings_prize']
         horse.trainer = item['trainer']
         horse.url = item['url']
-        self.session.add(horse)
-        self.session.commit()
+        try:
+            self.session.add(horse)
+            self.session.commit()
+        except Exception:
+            self.session.rollback()
 
     def process_item_race(self, item):
         race = model.Race()
@@ -80,8 +86,8 @@ class DatabasePipeline(object):
         try:
             self.session.add(race)
             self.session.commit()
-        except Exception as e:
-            self.logger.error(e)
+        except Exception:
+            self.session.rollback()
 
     def process_item_racehorse(self, item):
         racehorse = model.RaceHorse()
@@ -100,8 +106,11 @@ class DatabasePipeline(object):
         racehorse.burden_weight = item['burden_weight']
         racehorse.netkeiba_url = item['netkeiba_url']
 
-        self.session.add(racehorse)
-        self.session.commit()
+        try:
+            self.session.add(racehorse)
+            self.session.commit()
+        except Exception:
+            self.session.rollback()
 
     def process_item_raceresult(self, item):
         raceresult = model.RaceResult()
@@ -132,6 +141,9 @@ class DatabasePipeline(object):
         raceresult.combi_sanrenpuku = item['combi_sanrenpuku']
         raceresult.combi_sanrentan = item['combi_sanrentan']
 
-        self.session.add(raceresult)
-        self.session.commit()
+        try:
+            self.session.add(raceresult)
+            self.session.commit()
+        except Exception:
+            self.session.rollback()
 
