@@ -1,6 +1,7 @@
 netkeiba_scraper_python/spiders/data/*.txt
 netkeiba_scraper_python/__pycache__/
 netkeiba_scraper_python/spiders/__pycache__/
+netkeiba_scraper_python/spiders/data/
 log/
 python/
 *.sqlite
