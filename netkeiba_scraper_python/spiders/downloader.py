@@ -46,5 +46,5 @@ class DownloaderSpider(scrapy.Spider):
         else:
             raise Exception('unknown url format')
 
-        with open(file_path, 'w') as f:
+        with open(file_path, 'w', encoding='euc-jp') as f:
             f.write(self.text)
