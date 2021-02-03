@@ -1,3 +1,4 @@
+import pathlib
 import re
 
 
@@ -7,6 +8,13 @@ def load_url_list(file_path):
         for line in f.readlines():
             url_list.append(line.rstrip('\n'))
         return url_list
+
+
+def load_html_file_list(dir_path):
+    dir_path = pathlib.Path(dir_path)
+    html_list = list(dir_path.glob('*'))
+    html_list = ['file://' + str(filename.resolve()) for filename in html_list]
+    return html_list
 
 
 def jockey_profile_url2id(text):

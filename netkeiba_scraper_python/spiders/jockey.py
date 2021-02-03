@@ -6,7 +6,8 @@ from .. import util
 
 class JockeySpider(scrapy.Spider):
     name = 'jockey'
-    start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/jockey_url_list.txt')
+    # start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/jockey_url_list.txt')
+    start_urls = util.load_html_file_list('./netkeiba_scraper_python/spiders/data/html/jockey')
 
     def parse(self, response):
         item = Jockey()
@@ -20,5 +21,4 @@ class JockeySpider(scrapy.Spider):
 
     def process_jockey_name(self, text):
         text = text.replace('\n', '')
-        return text[:text.find('\xa0')
-               ]
+        return text[:text.find('\xa0')]

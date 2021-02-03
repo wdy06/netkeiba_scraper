@@ -6,7 +6,8 @@ from .. import util
 
 class HorseSpider(scrapy.Spider):
     name = 'horse'
-    start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/horse_url_list.txt')
+    # start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/horse_url_list.txt')
+    start_urls = util.load_html_file_list('./netkeiba_scraper_python/spiders/data/html/horse')
 
     def parse(self, response):
         item = Horse()

@@ -12,7 +12,8 @@ def race_url2id(url):
 
 class RaceSpider(scrapy.Spider):
     name = 'race'
-    start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/race_url_list.txt')
+    # start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/race_url_list.txt')
+    start_urls = util.load_html_file_list('./netkeiba_scraper_python/spiders/data/html/race')
 
     def parse(self, response):
         item = Race()

@@ -8,7 +8,9 @@ from .. import util
 
 class RaceHorseSpider(scrapy.Spider):
     name = 'racehorse'
-    start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/race_url_list.txt')
+    # start_urls = util.load_url_list('./netkeiba_scraper_python/spiders/data/race_url_list.txt')
+    start_urls = util.load_html_file_list(
+        './netkeiba_scraper_python/spiders/data/html/race')
 
     def parse(self, response):
         table = response.css('#contents_liquid > table')
